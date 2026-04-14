@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived from Casual 2D Captures">
+  <meta property="og:title"
+    content="DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived from Casual 2D Captures" />
+  <meta property="og:description"
+    content="DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived from Casual 2D Captures" />
+  <meta property="og:url" content="URL" />
+  <meta property="og:image" content="static/images/your_banner_image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived from Casual 2D Captures</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    .sysmode {
+      font-weight: bold;
+      text-decoration: underline;
+      text-decoration-thickness: 2.5px;
+      text-underline-offset: 3px;
+    }
+
+    .sysmode-sam {
+      color: #B46504;
+      -webkit-text-stroke: 1px rgba(180, 101, 4, 0.2);
+    }
+
+    .sysmode-dof {
+      color: #2D7D46;
+      -webkit-text-stroke: 1px rgba(45, 125, 70, 0.2);
+    }
+
+    .sysmode-propaint {
+      color: #AE4132;
+      -webkit-text-stroke: 1px rgba(174, 65, 50, 0.2);
+    }
+
+    .sysmode-pov {
+      color: #9673A6;
+      -webkit-text-stroke: 1px rgba(150, 115, 166, 0.2);
+    }
+
+    .sysmode-mode {
+      color: #0055A4;
+      -webkit-text-stroke: 1px rgba(0, 85, 164, 0.2);
+    }
+
+    .dive-D {
+      color: rgb(68, 128, 241);
+      font-weight: bold;
+    }
+
+    .dive-I {
+      color: rgb(244, 60, 36);
+      font-weight: bold;
+    }
+
+    .dive-V {
+      color: rgb(248, 192, 38);
+      font-weight: bold;
+    }
+
+    .dive-E {
+      color: rgb(57, 157, 84);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <img src="static/images/title-image-white.png" alt="DIVE title image"
+              style="width: 120%; margin-top: -2.5rem; margin-bottom: 1rem;" />
+            <!-- <h1 class="title is-1 publication-title">DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived
+              from Casual 2D Captures</h1> -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Anonymous Authors
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="affiliation">Under Double-Blind Review</span>
+            </div>
+
+            <div class="title is-5 publication-title" style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
+              <a href="#" target="_blank"><strong>Under Submission</strong></a>
+            </div>
+
+            <div class="column has-text-centered">
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (coming soon)</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser image-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="has-text-centered">
+          <img src="static/images/teaser-figure.png" alt="DIVE workflow and scene composition capabilities"
+            class="teaser-image" style="width: 100%;" />
+        </div>
+        <div class="content has-text-justified is-size-6 has-text-grey-dark"
+          style="margin-top: 1.5rem; padding: 0 1rem;">
+          <p>
+            <strong class="has-text-grey-dark">The <span class="dive-D">D</span><span class="dive-I">I</span><span
+                class="dive-V">V</span><span class="dive-E">E</span> (<span class="dive-D">D</span>ynamic <span
+                class="dive-I">I</span>mmersive <span class="dive-V">V</span>ideo <span class="dive-E">E</span>diting)
+              workflow and scene composition capabilities.</strong><br>
+            <b>(a)</b> Original image sequence input of a sheep scene.
+            <b>(b)</b> Spatial translation of the sheep to the 3D scene followed by generative <span
+              class="sysmode sysmode-propaint">inpainting</span> of the background.<br>
+            <b>(c)</b> Original image sequence input of a bear scene.
+            <b>(d)</b> Spatial translation of the bear to the 3D scene followed by volumetric <span
+              class="sysmode sysmode-sam">segmentation</span>.<br>
+            <b>(e)</b> The final synthesized composition, combining the <span class="sysmode sysmode-propaint">inpainted
+              sheep</span> environment with the <span class="sysmode sysmode-sam">segmented bear</span> extracted from
+            the secondary scene.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser image -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Spatial video is emerging as a compelling new media format because it adds depth cues that make captured
+              moments feel more immersive and engaging. Meanwhile, recent reconstruction techniques are making it
+              increasingly possible to convert casually captured 2D video into viewable 3D content for VR and AR,
+              greatly broadening access to this media. However, generating a 3D spatial video does not guarantee a
+              satisfactory first result; creators also need ways to revise, refine, and creatively manipulate the
+              reconstructed scene. Despite this need, tools for directly editing dynamic 3D spatial video remain
+              underexplored. To address this gap, we first derive a design space for immersive spatial video editing by
+              systematically synthesizing operations from prior 2D video editing and spatial interaction literature,
+              then mapping them into embodied 3D interaction techniques. Guided by this framework, we develop <b><span
+                  class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span
+                  class="dive-E">E</span></b>, a VR
+              research prototype that supports core spatial editing operations such as <span
+                class="sysmode sysmode-sam">object segmentation</span>, <span class="sysmode sysmode-dof">6DoF
+                temporal-spatial relocation</span>, <span class="sysmode sysmode-propaint">generative video
+                inpainting</span>, <span class="sysmode sysmode-pov">dynamic viewpoint switching</span>, and the <span
+                class="sysmode sysmode-mode">accumulation</span> of 3D motion trails. We evaluate <b><span
+                  class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span
+                  class="dive-E">E</span></b> through a
+              usability study and report key findings, lessons learned, and design implications for future immersive
+              tools for editing dynamic spatial video.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <!-- Sections (Add your own) -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Methodology / Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              More content goes here. You can add videos, images, and text inside sections.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Sections -->
+
+  <!--BibTex citation -->
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{anonymous2025dive,
+    title = {DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived from Casual 2D Captures},
+    author = {Anonymous Authors},
+    year = {2025},
+    booktitle = {Under Submission},
+}</code></pre>
+    </div>
+  </section> -->
+  <!--End BibTex citation -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
