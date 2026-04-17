@@ -148,10 +148,125 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <div class="has-text-centered">
-          <img src="static/images/teaser-figure.png" alt="DIVE workflow and scene composition capabilities"
-            class="teaser-image" style="width: 100%;" />
+        <div class="teaser-parts-container">
+          <img src="static/images/teaser-figure-a.png" class="teaser-hover-img part-a" alt="Part A" />
+          <img src="static/images/teaser-figure-b.png" class="teaser-hover-img part-b" alt="Part B" />
+          <img src="static/images/teaser-figure-e.png" class="teaser-hover-img part-e" alt="Part E" />
+          <img src="static/images/teaser-figure-d.png" class="teaser-hover-img part-d" alt="Part D" />
+          <img src="static/images/teaser-figure-c.png" class="teaser-hover-img part-c" alt="Part C" />
         </div>
+        <style>
+          .teaser-parts-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 2px;
+            /* Small gap so they don't visually merge into an unreadable block */
+          }
+
+          .teaser-hover-img {
+            max-width: 100%;
+            height: auto;
+            flex: 1 1 auto;
+            /* Let default natural widths guide flex properties */
+            min-width: 0;
+            object-fit: contain;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, filter 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            padding: 4px;
+            /* Give room for background color to be seen */
+            border-radius: 8px;
+            background-color: transparent;
+            filter: brightness(1);
+            margin: 0;
+          }
+
+          .caption-line {
+            transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            padding: 2px 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            /* Makes it clear you can interact with captions */
+          }
+
+          /* General hover dimming for both images and captions when either is interacted with */
+          .hero-body:has(.teaser-hover-img:hover) .teaser-hover-img,
+          .hero-body:has(.caption-line:hover) .teaser-hover-img {
+            filter: brightness(0.6);
+          }
+
+          .hero-body:has(.teaser-hover-img:hover) .caption-line,
+          .hero-body:has(.caption-line:hover) .caption-line {
+            opacity: 0.4;
+          }
+
+          /* Bidirectional Specific Highlighting: Match Image <-> Caption */
+          .hero-body:has(.part-a:hover) .part-a,
+          .hero-body:has(.caption-a:hover) .part-a,
+          .hero-body:has(.part-b:hover) .part-b,
+          .hero-body:has(.caption-b:hover) .part-b,
+          .hero-body:has(.part-c:hover) .part-c,
+          .hero-body:has(.caption-c:hover) .part-c,
+          .hero-body:has(.part-d:hover) .part-d,
+          .hero-body:has(.caption-d:hover) .part-d,
+          .hero-body:has(.part-e:hover) .part-e,
+          .hero-body:has(.caption-e:hover) .part-e {
+            filter: brightness(1);
+            transform: scale(1.15);
+            margin: 0 25px;
+            /* Pushes the adjacent images out smoothly while scaling */
+            z-index: 10;
+            /* Ensures hovered image is on top layer */
+            background-color: #f4f8ff;
+            /* SOLID, fully opaque light blue so you can't see through */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          }
+
+          /* Prevent edge stutter/shiver by anchoring the outer edges of the first and last images */
+          .teaser-hover-img.part-a {
+            transform-origin: left center;
+          }
+
+          .hero-body:has(.part-a:hover) .part-a,
+          .hero-body:has(.caption-a:hover) .part-a {
+            margin-left: 0;
+            margin-right: 50px;
+            /* Compensate for the lost left margin to preserve layout shifting */
+          }
+
+          .teaser-hover-img.part-c {
+            transform-origin: right center;
+          }
+
+          .hero-body:has(.part-c:hover) .part-c,
+          .hero-body:has(.caption-c:hover) .part-c {
+            margin-right: 0;
+            margin-left: 50px;
+          }
+
+          /* Bring the specifically matched caption back to full opacity and highlight it */
+          .hero-body:has(.part-a:hover) .caption-a,
+          .hero-body:has(.caption-a:hover) .caption-a,
+          .hero-body:has(.part-b:hover) .caption-b,
+          .hero-body:has(.caption-b:hover) .caption-b,
+          .hero-body:has(.part-c:hover) .caption-c,
+          .hero-body:has(.caption-c:hover) .caption-c,
+          .hero-body:has(.part-d:hover) .caption-d,
+          .hero-body:has(.caption-d:hover) .caption-d,
+          .hero-body:has(.part-e:hover) .caption-e,
+          .hero-body:has(.caption-e:hover) .caption-e {
+            opacity: 1;
+            background-color: #f4f8ff;
+            color: #000;
+            font-weight: 600;
+          }
+        </style>
         <div class="content has-text-justified is-size-6 has-text-grey-dark"
           style="margin-top: 1.5rem; padding: 0 1rem;">
           <p>
@@ -161,15 +276,16 @@
                 class="dive-I">I</span>mmersive <span class="dive-V">V</span>ideo <span class="dive-E">E</span>diting)
               workflow and scene composition capabilities.</strong>
           </div><br>
-          <b>(a)</b> Original image sequence input of a sheep scene.<br>
-          <b>(b)</b> Spatial translation of the sheep to the 3D scene followed by generative <span
-            class="sysmode sysmode-propaint">inpainting</span> of the background.<br>
-          <b>(c)</b> Original image sequence input of a bear scene.<br>
-          <b>(d)</b> Spatial translation of the bear to the 3D scene followed by volumetric <span
-            class="sysmode sysmode-sam">segmentation</span>.<br>
-          <b>(e)</b> The final synthesized composition, combining the <span class="sysmode sysmode-propaint">inpainted
-            sheep</span> environment with the <span class="sysmode sysmode-sam">segmented bear</span> extracted from
-          the secondary scene.
+          <span class="caption-line caption-a"><b>(a)</b> Original image sequence input of a sheep scene.</span><br>
+          <span class="caption-line caption-b"><b>(b)</b> Spatial translation of the sheep to the 3D scene followed by
+            generative <span class="sysmode sysmode-propaint">inpainting</span> of the background.</span><br>
+          <span class="caption-line caption-c"><b>(c)</b> Original image sequence input of a bear scene.</span><br>
+          <span class="caption-line caption-d"><b>(d)</b> Spatial translation of the bear to the 3D scene followed by
+            volumetric <span class="sysmode sysmode-sam">segmentation</span>.</span><br>
+          <span class="caption-line caption-e"><b>(e)</b> The final synthesized composition, combining the <span
+              class="sysmode sysmode-propaint">inpainted
+              sheep</span> environment with the <span class="sysmode sysmode-sam">segmented bear</span> extracted from
+            the secondary scene.</span>
           </p>
         </div>
       </div>
