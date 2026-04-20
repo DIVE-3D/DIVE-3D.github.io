@@ -72,6 +72,11 @@
       -webkit-text-stroke: 1px rgba(0, 85, 164, 0.2);
     }
 
+    .sysmode-play {
+      color: #007B88;
+      -webkit-text-stroke: 1px rgba(0, 123, 136, 0.2);
+    }
+
     .dive-D {
       color: rgb(68, 128, 241);
       font-weight: bold;
@@ -270,7 +275,7 @@
         <div class="content has-text-justified is-size-6 has-text-grey-dark"
           style="margin-top: 1.5rem; padding: 0 1rem;">
           <p>
-          <div class="has-text-centered">
+          <div class="has-text-centered is-size-5">
             <strong class="has-text-grey-dark">The <span class="dive-D">D</span><span class="dive-I">I</span><span
                 class="dive-V">V</span><span class="dive-E">E</span> (<span class="dive-D">D</span>ynamic <span
                 class="dive-I">I</span>mmersive <span class="dive-V">V</span>ideo <span class="dive-E">E</span>diting)
@@ -293,8 +298,33 @@
   </section>
   <!-- End teaser image -->
 
-  <!-- Paper abstract -->
+  <!-- Video -->
   <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3"><span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> in Action</h2>
+          <div>
+            <h3 class="subtitle is-6 has-text-grey"><span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> transforms casual 2D video into an editable dynamic 3D spatial scene, supporting operations such as <span class="sysmode sysmode-sam">object segmentation</span>, <span class="sysmode sysmode-dof">6DoF temporal-spatial relocation</span>, <span class="sysmode sysmode-propaint">generative video inpainting</span>, <span class="sysmode sysmode-pov">dynamic viewpoint switching</span>, and <span class="sysmode sysmode-mode">3D motion trail accumulation</span>—all within a single immersive VR workspace.</h3>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <video controls loop playsinline style="width: 100%; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.15);">
+              <source src="static/videos/DIVE_low_sub.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Video -->
+
+  <!-- Paper abstract -->
+  <section class="section hero">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -329,22 +359,68 @@
   </section>
   <!-- End paper abstract -->
 
-  <!-- Sections (Add your own) -->
-  <section class="section hero">
+  <!-- DIVE Framework -->
+  <section class="section hero is-light">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Methodology / Results</h2>
-          <div class="content has-text-justified">
-            <p>
-              More content goes here. You can add videos, images, and text inside sections.
-            </p>
-          </div>
+          <h2 class="title is-3">The <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> Framework</h2>
+        </div>
+      </div>
+      <div class="columns is-centered" style="margin-top: 1.5rem;">
+        <div class="column is-four-fifths">
+          <table class="table is-fullwidth is-bordered" style="border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th style="width: 40%; text-align: center; padding: 0.75rem 1rem;">Category</th>
+                <th style="text-align: center; padding: 0.75rem 1rem;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Navigation and Playback -->
+              <tr>
+                <td rowspan="4" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Navigation and Playback</td>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-dof">6DoF Scene Manipulation</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-play">Temporal Playback</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-mode">Motion Accumulation</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-pov">POV Switching</span></td>
+              </tr>
+              <!-- Segmentation -->
+              <tr style="border-top: 2px solid #dbdbdb;">
+                <td rowspan="3" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Segmentation</td>
+                <td style="padding: 0.65rem 1rem;">Spawn Context Tablet</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;">Volumetric Targeting</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-sam">Execute Segmentation</span></td>
+              </tr>
+              <!-- Spatial-Temporal Modification -->
+              <tr style="border-top: 2px solid #dbdbdb;">
+                <td rowspan="3" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Spatial-Temporal Modification</td>
+                <td style="padding: 0.65rem 1rem;">Spatial-Temporal Relocation</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-propaint">Generative Inpainting</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.65rem 1rem;">Scene Hot-Swapping</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.75rem;"><em>The <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> Actionable Space. This table outlines the practical mapping of our combined taxonomy, detailing the core operations required to execute spatial-temporal video edits.</em></p>
         </div>
       </div>
     </div>
   </section>
-  <!-- End Sections -->
+  <!-- End DIVE Framework -->
 
   <!--BibTex citation -->
   <!-- <section class="section" id="BibTeX">
