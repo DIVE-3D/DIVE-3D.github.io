@@ -41,6 +41,9 @@
   <script>
     window.addEventListener('load', function () {
       document.body.style.opacity = '1';
+      document.querySelectorAll('.teaser-hover-img').forEach(function (img) {
+        img.draggable = false;
+      });
     });
   </script>
 
@@ -49,6 +52,7 @@
       opacity: 0;
       transition: opacity 0.4s ease;
     }
+
     .sysmode {
       font-weight: bold;
       text-decoration: underline;
@@ -125,7 +129,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <img src="static/images/title-image-white.png" alt="DIVE title image"
+            <img src="static/images/title-image-white.png" alt="DIVE title image" draggable="false"
               style="width: 120%; margin-top: -2.5rem; margin-bottom: 1rem;" />
             <!-- <h1 class="title is-1 publication-title">DIVE: Dynamic Immersive Video Editing of 3D Spatial Scenes Derived
               from Casual 2D Captures</h1> -->
@@ -322,21 +326,27 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3"><span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> in Action</h2>
+          <h2 class="title is-3"><span class="dive-D">D</span><span class="dive-I">I</span><span
+              class="dive-V">V</span><span class="dive-E">E</span> in Action</h2>
           <div>
-            <h3 class="subtitle is-6 has-text-grey"><span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> transforms casual 2D video into an editable dynamic 3D spatial scene, supporting operations such as <span class="sysmode sysmode-sam">object segmentation</span>, <span class="sysmode sysmode-dof">6DoF temporal-spatial relocation</span>, <span class="sysmode sysmode-propaint">generative video inpainting</span>, <span class="sysmode sysmode-pov">dynamic viewpoint switching</span>, and <span class="sysmode sysmode-mode">3D motion trail accumulation</span>—all within a single immersive VR workspace.</h3>
+            <h3 class="subtitle is-6 has-text-grey"><span class="dive-D">D</span><span class="dive-I">I</span><span
+                class="dive-V">V</span><span class="dive-E">E</span> transforms casual 2D video into an editable dynamic
+              3D spatial scene, supporting operations such as <span class="sysmode sysmode-sam">object
+                segmentation</span>, <span class="sysmode sysmode-dof">6DoF temporal-spatial relocation</span>, <span
+                class="sysmode sysmode-propaint">generative video inpainting</span>, <span
+                class="sysmode sysmode-pov">dynamic viewpoint switching</span>, and <span
+                class="sysmode sysmode-mode">3D motion trail accumulation</span>—all within a single immersive VR
+              workspace.</h3>
           </div>
         </div>
       </div>
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/MQheV_GI8aY?si=pG5Oh32y07V2HxRY"
-              title="DIVE in Action"
+            <iframe src="https://www.youtube.com/embed/MQheV_GI8aY?si=pG5Oh32y07V2HxRY" title="DIVE in Action"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              style="border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.15);">
+              allowfullscreen style="border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.15);">
             </iframe>
           </div>
         </div>
@@ -386,7 +396,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">The <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> Framework</h2>
+          <h2 class="title is-3">The <span class="dive-D">D</span><span class="dive-I">I</span><span
+              class="dive-V">V</span><span class="dive-E">E</span> Framework</h2>
         </div>
       </div>
       <div class="columns is-centered" style="margin-top: 1.5rem;">
@@ -401,7 +412,9 @@
             <tbody>
               <!-- Navigation and Playback -->
               <tr>
-                <td rowspan="4" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Navigation and Playback</td>
+                <td rowspan="4"
+                  style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">
+                  Navigation and Playback</td>
                 <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-dof">6DoF Scene Manipulation</span></td>
               </tr>
               <tr>
@@ -415,7 +428,9 @@
               </tr>
               <!-- Segmentation -->
               <tr style="border-top: 2px solid #dbdbdb;">
-                <td rowspan="3" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Segmentation</td>
+                <td rowspan="3"
+                  style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">
+                  Segmentation</td>
                 <td style="padding: 0.65rem 1rem;">Spawn Context Tablet</td>
               </tr>
               <tr>
@@ -426,18 +441,24 @@
               </tr>
               <!-- Spatial-Temporal Modification -->
               <tr style="border-top: 2px solid #dbdbdb;">
-                <td rowspan="3" style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">Spatial-Temporal Modification</td>
+                <td rowspan="3"
+                  style="vertical-align: middle; text-align: center; font-weight: bold; padding: 0.75rem 1rem;">
+                  Spatial-Temporal Modification</td>
                 <td style="padding: 0.65rem 1rem;">Spatial-Temporal Relocation</td>
               </tr>
               <tr>
-                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-propaint">Generative Inpainting</span></td>
+                <td style="padding: 0.65rem 1rem;"><span class="sysmode sysmode-propaint">Generative Inpainting</span>
+                </td>
               </tr>
               <tr>
                 <td style="padding: 0.65rem 1rem;">Scene Hot-Swapping</td>
               </tr>
             </tbody>
           </table>
-          <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.75rem;"><em>The <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> Actionable Space. This table outlines the practical mapping of our combined taxonomy, detailing the core operations required to execute spatial-temporal video edits.</em></p>
+          <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.75rem;"><em>The <span
+                class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span
+                class="dive-E">E</span> Actionable Space. This table outlines the practical mapping of our combined
+              taxonomy, detailing the core operations required to execute spatial-temporal video edits.</em></p>
         </div>
       </div>
     </div>
@@ -455,12 +476,25 @@
       <div class="columns is-centered" style="margin-top: 1.5rem;">
         <div class="column is-four-fifths">
           <div class="content has-text-justified" style="margin-bottom: 1.5rem;">
-            <p>Our exploratory usability study examined how participants learned, performed, and reflected on immersive spatial video editing with <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span>. Because the study was designed to understand usability and interaction characteristics rather than compare conditions, we organize the results around our three research questions and integrate empirical observations with interpretation. We also connect these findings to prior HCI work on immersive authoring, bimanual interaction, and VR interface design, situating <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span class="dive-E">E</span> within a broader trajectory of immersive creative tools.</p>
+            <p>Our exploratory usability study examined how participants learned, performed, and reflected on immersive
+              spatial video editing with <span class="dive-D">D</span><span class="dive-I">I</span><span
+                class="dive-V">V</span><span class="dive-E">E</span>. Because the study was designed to understand
+              usability and interaction characteristics rather than compare conditions, we organize the results around
+              our three research questions and integrate empirical observations with interpretation. We also connect
+              these findings to prior HCI work on immersive authoring, bimanual interaction, and VR interface design,
+              situating <span class="dive-D">D</span><span class="dive-I">I</span><span class="dive-V">V</span><span
+                class="dive-E">E</span> within a broader trajectory of immersive creative tools.</p>
           </div>
           <figure class="image">
-            <img src="static/images/key-findings.png" alt="Key findings figure showing NASA-TLX and SUS distributions" style="border-radius: 6px;" />
+            <img src="static/images/key-findings.png" alt="Key findings figure showing NASA-TLX and SUS distributions"
+              style="border-radius: 6px;" draggable="false" />
           </figure>
-          <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.75rem;"><em>Distribution of participant responses across (a) workload (NASA-TLX) after finishing the basic operation tasks, (b) repeated workload measurements after completing the whole study, and (c) System Usability Scale (SUS). NASA-TLX and SUS figures display the percentage of responses on a 1–10 scale and a 1–5 scale respectively, with color indicating score levels from low (<span class="sysmode sysmode-blue">blue</span>) to high (<span class="sysmode sysmode-red">red</span>).</em></p>
+          <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.75rem;"><em>Distribution of
+              participant responses across (a) workload (NASA-TLX) after finishing the basic operation tasks, (b)
+              repeated workload measurements after completing the whole study, and (c) System Usability Scale (SUS).
+              NASA-TLX and SUS figures display the percentage of responses on a 1–10 scale and a 1–5 scale respectively,
+              with color indicating score levels from low (<span class="sysmode sysmode-blue">blue</span>) to high
+              (<span class="sysmode sysmode-red">red</span>).</em></p>
         </div>
       </div>
     </div>
