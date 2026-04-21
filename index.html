@@ -203,7 +203,7 @@
             /* Let default natural widths guide flex properties */
             min-width: 0;
             object-fit: contain;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, filter 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s;
             cursor: pointer;
             position: relative;
             z-index: 1;
@@ -211,7 +211,7 @@
             /* Give room for background color to be seen */
             border-radius: 8px;
             background-color: transparent;
-            filter: brightness(1);
+            opacity: 1;
             margin: 0;
           }
 
@@ -226,7 +226,7 @@
           /* General hover dimming for both images and captions when either is interacted with */
           .hero-body:has(.teaser-hover-img:hover) .teaser-hover-img,
           .hero-body:has(.caption-line:hover) .teaser-hover-img {
-            filter: brightness(0.6);
+            opacity: 0.4;
           }
 
           .hero-body:has(.teaser-hover-img:hover) .caption-line,
@@ -245,7 +245,7 @@
           .hero-body:has(.caption-d:hover) .part-d,
           .hero-body:has(.part-e:hover) .part-e,
           .hero-body:has(.caption-e:hover) .part-e {
-            filter: brightness(1);
+            opacity: 1;
             transform: scale(1.15);
             margin: 0 25px;
             /* Pushes the adjacent images out smoothly while scaling */
@@ -465,8 +465,695 @@
   </section>
   <!-- End DIVE Framework -->
 
-  <!-- Key Findings -->
+  <!-- DIVE Interactions -->
   <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">The <span class="dive-D">D</span><span class="dive-I">I</span><span
+              class="dive-V">V</span><span class="dive-E">E</span> Interactions</h2>
+          <p class="subtitle is-6 has-text-grey" style="margin-top: 0.5rem;">
+            Each interaction in <span class="dive-D">D</span><span class="dive-I">I</span><span
+              class="dive-V">V</span><span class="dive-E">E</span> is designed for embodied, bimanual VR
+            control&mdash;mapping familiar video editing operations to 3D spatial gestures.
+          </p>
+        </div>
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column">
+          <style>
+            .dive-interaction-card {
+              display: flex;
+              align-items: flex-start;
+              gap: 1.25rem;
+              background: #ffffff;
+              border: 1px solid #e8e8e8;
+              border-left-width: 4px;
+              border-radius: 10px;
+              padding: 1.25rem 1.4rem;
+              margin-bottom: 1rem;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+              transition: box-shadow 0.2s ease, transform 0.2s ease;
+            }
+
+            .dive-interaction-card:hover {
+              box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+              transform: translateY(-2px);
+            }
+
+            .dive-interaction-card .card-icon {
+              font-size: 1.6rem;
+              flex-shrink: 0;
+              margin-top: 0.1rem;
+            }
+
+            .dive-interaction-card .card-body {
+              flex: 1;
+            }
+
+            .dive-interaction-card .card-label {
+              font-size: 0.75rem;
+              font-weight: 700;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              margin-bottom: 0.2rem;
+            }
+
+            .dive-interaction-card .card-title {
+              font-size: 1.05rem;
+              font-weight: 700;
+              margin-bottom: 0.35rem;
+              line-height: 1.3;
+            }
+
+            .dive-interaction-card .card-desc {
+              font-size: 0.9rem;
+              color: #555;
+              line-height: 1.55;
+            }
+
+            /* Per-interaction accent colours */
+            .card-accent-sam {
+              border-left-color: #B46504;
+            }
+
+            .card-accent-dof {
+              border-left-color: #2D7D46;
+            }
+
+            .card-accent-propaint {
+              border-left-color: #AE4132;
+            }
+
+            .card-accent-pov {
+              border-left-color: #9673A6;
+            }
+
+            .card-accent-mode {
+              border-left-color: #0055A4;
+            }
+
+            .card-accent-play {
+              border-left-color: #007B88;
+            }
+
+            /* Grouped layout: image on top, two cards side-by-side below */
+            .interaction-group {
+              margin-bottom: 3.5rem;
+            }
+
+            .interaction-group-img {
+              width: 100%;
+              margin-bottom: 1.25rem;
+            }
+
+            .interaction-group-img img {
+              width: 100%;
+              height: auto;
+              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+              display: block;
+            }
+
+            .interaction-group-cards {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1rem;
+            }
+
+            .interaction-group-cards .dive-interaction-card {
+              margin-bottom: 0;
+            }
+
+            @media (max-width: 640px) {
+              .interaction-group-cards {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+
+          <!-- Group 1: Temporal Playback + 6DoF Relocation -->
+          <div class="interaction-group">
+            <div class="interaction-group-img">
+              <style>
+                .pb-parts-container {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                  gap: 2px;
+                  margin-bottom: 0.5rem;
+                }
+
+                .interaction-group-img .pb-hover-img {
+                  max-width: 100%;
+                  width: auto !important;
+                  height: auto;
+                  flex: 1 1 auto;
+                  min-width: 0;
+                  object-fit: contain;
+                  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s !important;
+                  cursor: pointer;
+                  position: relative;
+                  z-index: 1;
+                  padding: 4px !important;
+                  border-radius: 8px !important;
+                  background-color: transparent !important;
+                  opacity: 1 !important;
+                  margin: 0 !important;
+                  box-shadow: none !important;
+                }
+
+                .pb-caption-span {
+                  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                  padding: 2px 5px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                }
+
+                /* General dimming of all images when ANY image or caption is hovered */
+                .interaction-group:has(.pb-hover-img:hover) .interaction-group-img .pb-hover-img,
+                .interaction-group:has(.pb-caption-span:hover) .interaction-group-img .pb-hover-img {
+                  opacity: 0.4 !important;
+                }
+
+                .interaction-group:has(.pb-hover-img:hover) .pb-caption-span,
+                .interaction-group:has(.pb-caption-span:hover) .pb-caption-span {
+                  opacity: 0.4;
+                }
+
+                /* Highlight the matching active element */
+                .interaction-group:has(.pb-a:hover) .interaction-group-img .pb-a,
+                .interaction-group:has(.pb-cap-a:hover) .interaction-group-img .pb-a,
+                .interaction-group:has(.pb-b:hover) .interaction-group-img .pb-b,
+                .interaction-group:has(.pb-cap-b:hover) .interaction-group-img .pb-b,
+                .interaction-group:has(.pb-c:hover) .interaction-group-img .pb-c,
+                .interaction-group:has(.pb-cap-c:hover) .interaction-group-img .pb-c,
+                .interaction-group:has(.pb-d:hover) .interaction-group-img .pb-d,
+                .interaction-group:has(.pb-cap-d:hover) .interaction-group-img .pb-d {
+                  opacity: 1 !important;
+                  transform: scale(1.15) !important;
+                  margin: 0 25px !important;
+                  z-index: 10 !important;
+                  background-color: #f4f8ff !important;
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+                }
+
+                .interaction-group-img .pb-hover-img.pb-a {
+                  transform-origin: left center;
+                }
+
+                .interaction-group:has(.pb-a:hover) .interaction-group-img .pb-a,
+                .interaction-group:has(.pb-cap-a:hover) .interaction-group-img .pb-a {
+                  margin-left: 0 !important;
+                  margin-right: 50px !important;
+                }
+
+                .interaction-group-img .pb-hover-img.pb-d {
+                  transform-origin: right center;
+                }
+
+                .interaction-group:has(.pb-d:hover) .interaction-group-img .pb-d,
+                .interaction-group:has(.pb-cap-d:hover) .interaction-group-img .pb-d {
+                  margin-right: 0 !important;
+                  margin-left: 50px !important;
+                }
+
+                .interaction-group:has(.pb-a:hover) .pb-cap-a,
+                .interaction-group:has(.pb-cap-a:hover) .pb-cap-a,
+                .interaction-group:has(.pb-b:hover) .pb-cap-b,
+                .interaction-group:has(.pb-cap-b:hover) .pb-cap-b,
+                .interaction-group:has(.pb-c:hover) .pb-cap-c,
+                .interaction-group:has(.pb-cap-c:hover) .pb-cap-c,
+                .interaction-group:has(.pb-d:hover) .pb-cap-d,
+                .interaction-group:has(.pb-cap-d:hover) .pb-cap-d {
+                  opacity: 1;
+                  background-color: #f4f8ff;
+                  color: #000;
+                  font-weight: 600;
+                }
+
+                /* Provide smooth transitions including opacity for the cards in this group */
+                .interaction-group-cards .dive-interaction-card {
+                  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+                }
+
+                /* Highlight the 6DoF card with a green drop shadow when 6DoF images are hovered */
+                body:has(.pb-hover-img:hover) .card-accent-dof,
+                body:has(.pb-caption-span:hover) .card-accent-dof {
+                  box-shadow: 0 10px 24px rgba(45, 125, 70, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+
+                /* Dim ALL other unassociated cards across the section when 6DoF images are hovered */
+                body:has(.pb-hover-img:hover) .dive-interaction-card:not(.card-accent-dof),
+                body:has(.pb-caption-span:hover) .dive-interaction-card:not(.card-accent-dof) {
+                  opacity: 0.4;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+                }
+              </style>
+              <div class="pb-parts-container">
+                <img src="static/images/playback-a.png" class="pb-hover-img pb-a" alt="Playback A" draggable="false" />
+                <img src="static/images/playback-b.png" class="pb-hover-img pb-b" alt="Playback B" draggable="false" />
+                <img src="static/images/playback-c.png" class="pb-hover-img pb-c" alt="Playback C" draggable="false" />
+                <img src="static/images/playback-d.png" class="pb-hover-img pb-d" alt="Playback D" draggable="false" />
+              </div>
+              <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.6rem;"><em>Navigation and
+                  <span class="sysmode sysmode-play">playback</span> mechanics within the actionable space. Users can
+                  utilize <span class="sysmode sysmode-dof">6DoF manipulation</span> to ergonomically interact with the
+                  volumetric scene via <span class="pb-caption-span pb-cap-a"><strong>(a)</strong> translation</span>,
+                  <span class="pb-caption-span pb-cap-b"><strong>(b)</strong> uniform scaling</span>,
+                  <span class="pb-caption-span pb-cap-c"><strong>(c)</strong> rotation along the x-axis</span>, and
+                  <span class="pb-caption-span pb-cap-d"><strong>(d)</strong> rotation along the y-axis</span>.</em></p>
+            </div>
+            <div class="interaction-group-cards">
+
+              <!-- Temporal Playback -->
+              <div class="dive-interaction-card card-accent-play">
+                <div class="card-icon">⏱️</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #007B88;">Navigation &amp; Playback</div>
+                  <div class="card-title"><span class="sysmode sysmode-play">Temporal Playback</span></div>
+                  <div class="card-desc">
+                    A physical scrubbing gesture on the non-dominant controller advances or reverses the video timeline
+                    in real time. Users feel the passage of time as an embodied, continuous motion—making it natural to
+                    identify the precise frame at which to place an edit.
+                  </div>
+                </div>
+              </div>
+
+              <!-- 6DoF Relocation -->
+              <div class="dive-interaction-card card-accent-dof">
+                <div class="card-icon">✋</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #2D7D46;">Spatial-Temporal Modification</div>
+                  <div class="card-title"><span class="sysmode sysmode-dof">6DoF Temporal-Spatial Relocation</span>
+                  </div>
+                  <div class="card-desc">
+                    A bimanual grab gesture lets users reposition and reorient segmented objects anywhere in 3D space.
+                    Temporal scrubbing on the non-dominant controller synchronises playback, enabling users to precisely
+                    choose <em>when</em> in the video timeline the object should appear at its new spatial location.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Group 2: Motion Accumulation + POV Snapping -->
+          <div class="interaction-group">
+            <div class="interaction-group-img">
+              <style>
+                .acc-parts-container {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                  gap: 2px;
+                  margin-bottom: 0.5rem;
+                }
+                .interaction-group-img .acc-hover-img {
+                  max-width: 100%;
+                  width: auto !important;
+                  height: auto;
+                  flex: 1 1 auto;
+                  min-width: 0;
+                  object-fit: contain;
+                  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s !important;
+                  cursor: pointer;
+                  position: relative;
+                  z-index: 1;
+                  padding: 4px !important;
+                  border-radius: 8px !important;
+                  background-color: transparent !important;
+                  opacity: 1 !important;
+                  margin: 0 !important;
+                  box-shadow: none !important;
+                }
+                .acc-caption-span {
+                  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                  padding: 2px 5px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                }
+
+                /* General dimming of all images within THIS container */
+                .interaction-group:has(.acc-hover-img:hover) .interaction-group-img .acc-hover-img,
+                .interaction-group:has(.acc-caption-span:hover) .interaction-group-img .acc-hover-img { 
+                  opacity: 0.4 !important; 
+                }
+                .interaction-group:has(.acc-hover-img:hover) .acc-caption-span,
+                .interaction-group:has(.acc-caption-span:hover) .acc-caption-span { 
+                  opacity: 0.4; 
+                }
+
+                /* Highlight the matching active element */
+                .interaction-group:has(.acc-a:hover) .interaction-group-img .acc-a, 
+                .interaction-group:has(.acc-cap-a:hover) .interaction-group-img .acc-a,
+                .interaction-group:has(.acc-b:hover) .interaction-group-img .acc-b, 
+                .interaction-group:has(.acc-cap-b:hover) .interaction-group-img .acc-b,
+                .interaction-group:has(.acc-c:hover) .interaction-group-img .acc-c, 
+                .interaction-group:has(.acc-cap-c:hover) .interaction-group-img .acc-c {
+                  opacity: 1 !important;
+                  transform: scale(1.15) !important;
+                  margin: 0 25px !important;
+                  z-index: 10 !important;
+                  background-color: #f4f8ff !important;
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+                }
+
+                .interaction-group-img .acc-hover-img.acc-a { transform-origin: left center; }
+                .interaction-group:has(.acc-a:hover) .interaction-group-img .acc-a,
+                .interaction-group:has(.acc-cap-a:hover) .interaction-group-img .acc-a { margin-left: 0 !important; margin-right: 50px !important; }
+
+                .interaction-group-img .acc-hover-img.acc-c { transform-origin: right center; }
+                .interaction-group:has(.acc-c:hover) .interaction-group-img .acc-c,
+                .interaction-group:has(.acc-cap-c:hover) .interaction-group-img .acc-c { margin-right: 0 !important; margin-left: 50px !important; }
+
+                .interaction-group:has(.acc-a:hover) .acc-cap-a, .interaction-group:has(.acc-cap-a:hover) .acc-cap-a,
+                .interaction-group:has(.acc-b:hover) .acc-cap-b, .interaction-group:has(.acc-cap-b:hover) .acc-cap-b,
+                .interaction-group:has(.acc-c:hover) .acc-cap-c, .interaction-group:has(.acc-cap-c:hover) .acc-cap-c {
+                  opacity: 1;
+                  background-color: #f4f8ff;
+                  color: #000;
+                  font-weight: 600;
+                }
+
+                /* Dim ALL unassociated cards visually */
+                body:has(.acc-hover-img:hover) .dive-interaction-card,
+                body:has(.acc-caption-span:hover) .dive-interaction-card {
+                  opacity: 0.4;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+                }
+
+                /* Selectively re-illuminate correct card depending on image target */
+                body:has(.acc-a:hover) .card-accent-mode,
+                body:has(.acc-cap-a:hover) .card-accent-mode {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(0, 85, 164, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+
+                body:has(.acc-b:hover) .card-accent-pov,
+                body:has(.acc-cap-b:hover) .card-accent-pov {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(150, 115, 166, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+
+                body:has(.acc-c:hover) .card-accent-play,
+                body:has(.acc-cap-c:hover) .card-accent-play {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(0, 123, 136, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+              </style>
+              <div class="acc-parts-container">
+                <img src="static/images/accumulation-a.png" class="acc-hover-img acc-a" alt="Accumulation A" draggable="false" />
+                <img src="static/images/accumulation-b.png" class="acc-hover-img acc-b" alt="Accumulation B" draggable="false" />
+                <img src="static/images/accumulation-c.png" class="acc-hover-img acc-c" alt="Accumulation C" draggable="false" />
+              </div>
+              <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.6rem;"><em>Temporal controls
+                  provide enhanced spatial understanding by visualizing physical 3D motion trails and locking the user's
+                  perspective to moving targets. Users can manipulate the timeline via <span class="acc-caption-span acc-cap-a"><strong>(a)</strong> <span
+                    class="sysmode sysmode-mode">Accumulate Mode</span> to render historical motion paths</span>,
+                  <span class="acc-caption-span acc-cap-b"><strong>(b)</strong> <span class="sysmode sysmode-pov">Point-of-View (POV) snapping</span> for
+                  target-centric tracking</span>, and <span class="acc-caption-span acc-cap-c"><strong>(c)</strong> play/pause toggling for sequential frame <span
+                    class="sysmode sysmode-play">playback</span></span>.</em></p>
+            </div>
+            <div class="interaction-group-cards">
+
+              <!-- Motion Accumulation -->
+              <div class="dive-interaction-card card-accent-mode">
+                <div class="card-icon">🌀</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #0055A4;">Navigation &amp; Playback</div>
+                  <div class="card-title">3D <span class="sysmode sysmode-mode">Motion Trail Accumulation</span></div>
+                  <div class="card-desc">
+                    As temporal playback advances, the system accumulates and renders the 3D trajectory of any tracked
+                    object as a persistent volumetric trail in the scene. This spatial motion history gives users an
+                    intuitive, at-a-glance summary of object dynamics across time—a capability uniquely enabled by the
+                    immersive 3D workspace.
+                  </div>
+                </div>
+              </div>
+
+              <!-- POV Switching -->
+              <div class="dive-interaction-card card-accent-pov">
+                <div class="card-icon">📷</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #9673A6;">Navigation &amp; Playback</div>
+                  <div class="card-title"><span class="sysmode sysmode-pov">Dynamic Viewpoint Switching</span></div>
+                  <div class="card-desc">
+                    Users can snap their viewing perspective to any camera pose reconstructed along the original capture
+                    trajectory, or freely navigate in 6DoF through the Gaussian scene. A thumbnail strip on the context
+                    tablet provides a quick visual overview of available viewpoints for rapid switching.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Group 3: Segmentation + Generative Inpainting -->
+          <div class="interaction-group">
+            <div class="interaction-group-img">
+              <style>
+                .seg-parts-container {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  align-items: stretch;
+                  width: 100%;
+                  gap: 2px;
+                  margin-bottom: 0.5rem;
+                }
+                .seg-left-col {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 2px;
+                  flex: 0.6; /* Reduced to allocate less space to images a and b */
+                }
+                .seg-right-col {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 2px;
+                  flex: 1;
+                }
+                .seg-right-row {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 2px;
+                  flex: 1;
+                }
+                @media(max-width: 768px) {
+                  .seg-parts-container { flex-direction: column; }
+                  .seg-left-col { flex-direction: column; }
+                  .seg-right-col { flex-direction: column; }
+                  .seg-right-row { flex-direction: column; }
+                }
+                .interaction-group-img .seg-hover-img {
+                  max-width: 100%;
+                  width: auto !important;
+                  height: auto !important;
+                  flex: 0 1 auto; /* Stops DOM element from bloating past intrinsic dimensions */
+                  min-width: 0;
+                  object-fit: contain;
+                  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, margin 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s !important;
+                  cursor: pointer;
+                  position: relative;
+                  z-index: 1;
+                  padding: 4px !important;
+                  border-radius: 8px !important;
+                  background-color: transparent !important;
+                  opacity: 1 !important;
+                  margin: 0 !important;
+                  box-shadow: none !important;
+                }
+                .seg-caption-span {
+                  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                  padding: 2px 5px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                }
+
+                /* General dimming of all images within THIS container */
+                .interaction-group:has(.seg-hover-img:hover) .interaction-group-img .seg-hover-img,
+                .interaction-group:has(.seg-caption-span:hover) .interaction-group-img .seg-hover-img { 
+                  opacity: 0.4 !important; 
+                }
+                .interaction-group:has(.seg-hover-img:hover) .seg-caption-span,
+                .interaction-group:has(.seg-caption-span:hover) .seg-caption-span { 
+                  opacity: 0.4; 
+                }
+
+                /* Highlight the matching active element */
+                .interaction-group:has(.seg-a:hover) .interaction-group-img .seg-a, .interaction-group:has(.seg-cap-a:hover) .interaction-group-img .seg-a,
+                .interaction-group:has(.seg-b:hover) .interaction-group-img .seg-b, .interaction-group:has(.seg-cap-b:hover) .interaction-group-img .seg-b,
+                .interaction-group:has(.seg-c:hover) .interaction-group-img .seg-c, .interaction-group:has(.seg-cap-c:hover) .interaction-group-img .seg-c,
+                .interaction-group:has(.seg-d:hover) .interaction-group-img .seg-d, .interaction-group:has(.seg-cap-d:hover) .interaction-group-img .seg-d,
+                .interaction-group:has(.seg-e:hover) .interaction-group-img .seg-e, .interaction-group:has(.seg-cap-e:hover) .interaction-group-img .seg-e,
+                .interaction-group:has(.seg-f:hover) .interaction-group-img .seg-f, .interaction-group:has(.seg-cap-f:hover) .interaction-group-img .seg-f {
+                  opacity: 1 !important;
+                  transform: scale(1.15) !important;
+                  z-index: 10 !important;
+                  background-color: #f4f8ff !important;
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+                }
+
+                .interaction-group-img .seg-hover-img.seg-a { transform-origin: left center; }
+                .interaction-group:has(.seg-a:hover) .interaction-group-img .seg-a,
+                .interaction-group:has(.seg-cap-a:hover) .interaction-group-img .seg-a { margin-left: 0 !important; margin-right: 30px !important; }
+
+                .interaction-group-img .seg-hover-img.seg-b { transform-origin: right center; }
+                .interaction-group:has(.seg-b:hover) .interaction-group-img .seg-b,
+                .interaction-group:has(.seg-cap-b:hover) .interaction-group-img .seg-b { margin-right: 0 !important; margin-left: 30px !important; }
+
+                .interaction-group-img .seg-hover-img.seg-c { transform-origin: left center; }
+                .interaction-group:has(.seg-c:hover) .interaction-group-img .seg-c,
+                .interaction-group:has(.seg-cap-c:hover) .interaction-group-img .seg-c { margin-left: 0 !important; margin-right: 30px !important; }
+
+                .interaction-group-img .seg-hover-img.seg-d { transform-origin: right center; }
+                .interaction-group:has(.seg-d:hover) .interaction-group-img .seg-d,
+                .interaction-group:has(.seg-cap-d:hover) .interaction-group-img .seg-d { margin-right: 0 !important; margin-left: 30px !important; }
+
+                .interaction-group-img .seg-hover-img.seg-e { transform-origin: left center; }
+                .interaction-group:has(.seg-e:hover) .interaction-group-img .seg-e,
+                .interaction-group:has(.seg-cap-e:hover) .interaction-group-img .seg-e { margin-left: 0 !important; margin-right: 30px !important; }
+
+                .interaction-group-img .seg-hover-img.seg-f { transform-origin: right center; }
+                .interaction-group:has(.seg-f:hover) .interaction-group-img .seg-f,
+                .interaction-group:has(.seg-cap-f:hover) .interaction-group-img .seg-f { margin-right: 0 !important; margin-left: 30px !important; }
+
+                /* Caption highlight */
+                .interaction-group:has(.seg-a:hover) .seg-cap-a, .interaction-group:has(.seg-cap-a:hover) .seg-cap-a,
+                .interaction-group:has(.seg-b:hover) .seg-cap-b, .interaction-group:has(.seg-cap-b:hover) .seg-cap-b,
+                .interaction-group:has(.seg-c:hover) .seg-cap-c, .interaction-group:has(.seg-cap-c:hover) .seg-cap-c,
+                .interaction-group:has(.seg-d:hover) .seg-cap-d, .interaction-group:has(.seg-cap-d:hover) .seg-cap-d,
+                .interaction-group:has(.seg-e:hover) .seg-cap-e, .interaction-group:has(.seg-cap-e:hover) .seg-cap-e,
+                .interaction-group:has(.seg-f:hover) .seg-cap-f, .interaction-group:has(.seg-cap-f:hover) .seg-cap-f {
+                  opacity: 1;
+                  background-color: #f4f8ff;
+                  color: #000;
+                  font-weight: 600;
+                }
+
+                /* Dim ALL unassociated cards across page */
+                body:has(.seg-hover-img:hover) .dive-interaction-card,
+                body:has(.seg-caption-span:hover) .dive-interaction-card {
+                  opacity: 0.4;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+                }
+
+                /* Highlight SAM card on B, C, D, E, F */
+                body:has(.seg-b:hover) .card-accent-sam, body:has(.seg-cap-b:hover) .card-accent-sam,
+                body:has(.seg-c:hover) .card-accent-sam, body:has(.seg-cap-c:hover) .card-accent-sam,
+                body:has(.seg-d:hover) .card-accent-sam, body:has(.seg-cap-d:hover) .card-accent-sam,
+                body:has(.seg-e:hover) .card-accent-sam, body:has(.seg-cap-e:hover) .card-accent-sam,
+                body:has(.seg-f:hover) .card-accent-sam, body:has(.seg-cap-f:hover) .card-accent-sam {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(180, 101, 4, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+
+                /* Highlight 6DoF card alongside SAM on C, D */
+                body:has(.seg-c:hover) .card-accent-dof, body:has(.seg-cap-c:hover) .card-accent-dof,
+                body:has(.seg-d:hover) .card-accent-dof, body:has(.seg-cap-d:hover) .card-accent-dof {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(45, 125, 70, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+
+                /* Highlight Inpainting card on E, F */
+                body:has(.seg-e:hover) .card-accent-propaint, body:has(.seg-cap-e:hover) .card-accent-propaint,
+                body:has(.seg-f:hover) .card-accent-propaint, body:has(.seg-cap-f:hover) .card-accent-propaint {
+                  opacity: 1 !important;
+                  box-shadow: 0 10px 24px rgba(174, 65, 50, 0.25) !important;
+                  transform: translateY(-2px);
+                }
+              </style>
+              <div class="seg-parts-container">
+                <div class="seg-left-col">
+                  <img src="static/images/segmentation-a.png" class="seg-hover-img seg-a" alt="Segmentation A" draggable="false" />
+                  <img src="static/images/segmentation-b.png" class="seg-hover-img seg-b" alt="Segmentation B" draggable="false" />
+                </div>
+                <div class="seg-right-col">
+                  <div class="seg-right-row">
+                    <img src="static/images/segmentation-c.png" class="seg-hover-img seg-c" alt="Segmentation C" draggable="false" />
+                    <img src="static/images/segmentation-d.png" class="seg-hover-img seg-d" alt="Segmentation D" draggable="false" />
+                  </div>
+                  <div class="seg-right-row">
+                    <img src="static/images/segmentation-e.png" class="seg-hover-img seg-e" alt="Segmentation E" draggable="false" />
+                    <img src="static/images/segmentation-f.png" class="seg-hover-img seg-f" alt="Segmentation F" draggable="false" />
+                  </div>
+                </div>
+              </div>
+              </div>
+              <p class="is-size-6 has-text-grey has-text-centered" style="margin-top: 0.6rem;"><em>The complete
+                  spatial-temporal <span class="sysmode sysmode-sam">segmentation</span> and <span
+                    class="sysmode sysmode-propaint">inpainting</span> workflow. <span class="seg-caption-span seg-cap-a"><strong>(a)</strong> The original
+                  volumetric scene.</span> <span class="seg-caption-span seg-cap-b"><strong>(b)</strong> Application of a volumetric mask over the target object (the
+                  bear).</span> <span class="seg-caption-span seg-cap-c"><strong>(c)</strong> Successful extraction and isolation of the <span
+                    class="sysmode sysmode-sam">segmented target</span>.</span> <span class="seg-caption-span seg-cap-d"><strong>(d)</strong> Spatial translation of the
+                  <span class="sysmode sysmode-sam">segmented object</span> to modify its physical trajectory.</span>
+                  <span class="seg-caption-span seg-cap-e"><strong>(e)</strong> The generative <span class="sysmode sysmode-propaint">inpainting process
+                    (ProPainter)</span> executing to fill the occluded background.</span> <span class="seg-caption-span seg-cap-f"><strong>(f)</strong> Execution of the
+                  scene-swap command, allowing users to instantly toggle the active volumetric rendering between the
+                  original raw capture and the seamlessly <span class="sysmode sysmode-propaint">inpainted
+                    environment</span>.</span></em></p>
+            </div>
+            <div class="interaction-group-cards">
+
+              <!-- Volumetric Segmentation -->
+              <div class="dive-interaction-card card-accent-sam">
+                <div class="card-icon">🔍</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #B46504;">Segmentation</div>
+                  <div class="card-title">Volumetric Object Targeting &amp; <span
+                      class="sysmode sysmode-sam">Segmentation</span></div>
+                  <div class="card-desc">
+                    Users spawn a context tablet by pressing a controller button next to any object of interest. A 3D
+                    ray-cast lets them point-and-confirm a volumetric target within the reconstructed Gaussian scene.
+                    Confirmed selections are passed to a video foundation model (SAM-2) which propagates the mask across
+                    all frames, producing a temporally-consistent segmented object ready for further editing.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Generative Inpainting -->
+              <div class="dive-interaction-card card-accent-propaint">
+                <div class="card-icon">🎨</div>
+                <div class="card-body">
+                  <div class="card-label" style="color: #AE4132;">Spatial-Temporal Modification</div>
+                  <div class="card-title"><span class="sysmode sysmode-propaint">Generative Video Inpainting</span>
+                  </div>
+                  <div class="card-desc">
+                    After an object is relocated, the vacated region in the original video is filled using a generative
+                    inpainting model. The system automatically detects the masked area across all frames and synthesises
+                    a plausible background sequence, outputting a seamless and volumetrically sound merged scene.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End DIVE Interactions -->
+
+  <!-- Key Findings -->
+  <section class="section hero is-light">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
