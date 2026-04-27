@@ -1107,6 +1107,7 @@
                   justify-content: center;
                   gap: 2px;
                   flex: 0.6;
+                  min-width: 0;
                   /* Reduced to allocate less space to images a and b */
                 }
 
@@ -1117,6 +1118,7 @@
                   align-items: center;
                   gap: 2px;
                   flex: 1;
+                  min-width: 0;
                 }
 
                 .seg-right-row {
@@ -1126,24 +1128,8 @@
                   justify-content: center;
                   gap: 2px;
                   flex: 1;
-                }
-
-                @media(max-width: 768px) {
-                  .seg-parts-container {
-                    flex-direction: column;
-                  }
-
-                  .seg-left-col {
-                    flex-direction: column;
-                  }
-
-                  .seg-right-col {
-                    flex-direction: column;
-                  }
-
-                  .seg-right-row {
-                    flex-direction: column;
-                  }
+                  min-width: 0;
+                  width: 100%;
                 }
 
                 .interaction-group-img .seg-hover-img {
